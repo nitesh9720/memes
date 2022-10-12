@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memes</title>
+  </head>
+  <body>
+    <img id="img" src="<%= url %>" alt="" />
+    <button id="btn">Next</button>
+  </body>
+  <script>
+    document.getElementById("btn").onclick = function (e) {
+      dosome();
+    };
+    const dosome = async () => {
+      const res = await fetch("https://meme-api.herokuapp.com/gimme");
+      const data = await res.json();
+      document.getElementById("img").src = data.url;
+    };
+
+    fetch("http://localhost:3000/")
+      .then((data) => data.json())
+      .then((res) => document.getElementById("img").src = res.url)
+      .catch(err => console.log(err))
+      </script>
+</html>
